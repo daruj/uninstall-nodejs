@@ -6,7 +6,7 @@ Script to uninstall NodeJs in Mac OS
 2) Open the folder (cd uninstall-nodejs), and change the file permissions: sudo chmod +x ./uninstall-node.sh <br />
 3) Run the script: sudo ./uninstall-node.sh . Press enter/return when the following message is displayed: 'Press Control-C to quit now.'
 ```
-Url to my site: http://video-programazion.blogspot.com.ar <br />/
+Url to my site: http://video-programazion.blogspot.com.ar <br />
 Video tutorial url: https://www.youtube.com/watch?v=dMlhqLPvB74
 
 Enjoy!
