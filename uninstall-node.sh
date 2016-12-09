@@ -9,10 +9,14 @@ npm uninstall -g yarn
 
 sudo npm cache clean -f
 
+# make sure we did all the npm stuff first
+sudo npm uninstall npm -g
+
 
 # in case it was installed with port
 sudo port uninstall nodejs
 
+# this can not be done with sudo
 # Uninstall with brew everything node related (needs to be before sudo password)
 brew uninstall node
 brew uninstall npm
@@ -76,26 +80,22 @@ rm -rf /opt/local/include/node
 rm -rf /opt/local/lib/node_modules
 
 rm -rf /usr/local/bin/npm
-rm -rf /usr/local/share/man/man1/node*
-rm -rf /usr/local/lib/dtrace/node.d
+rm -rf /usr/local/bin/node
 
+rm -rf /usr/local/share/man/man1/node*
+rm -rf /usr/local/share/man/man1/npm*
+
+rm -rf /usr/local/lib/dtrace/node.d
 rm -rf /usr/local/lib/node_modules/npm/
 rm -rf /usr/local/lib/dtrace/node.d;
-rm -rf /usr/local/share/man/man1/node.1
 rm -rf /usr/local/lib/dtrace/node.d
+rm -vrf /usr/local/lib/node*
+rm -rf /usr/local/lib/node_modules
 
 rm -rf /usr/local/include/node*
 
-rm -rf /usr/local/lib/node*
-rm -rf /usr/local/lib/node*
-rm -rf /usr/local/include/node*
-rm -rf /usr/local/bin/node
-rm -rf /usr/local/bin/npm
-rm -rf /usr/local/share/man/man1/node.1
-rm -rf /usr/local/lib/dtrace/node.d
+ rm -rf /Users/$USER/.npm
 
-rm -vrf /usr/local/lib/node
-rm -rf /usr/local/lib/node_modules \
 rm -rf /var/db/receipts/org.nodejs.*
 
 echo 'done!!!'
