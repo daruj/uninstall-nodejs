@@ -26,10 +26,6 @@ brew cleanup
 
 ## remove nvm
 
-rm -rf ~/.nvm
-rm -rf ~/.npm
-rm -rf ~/.bower
-rm -rf $NVM_DIR ~/.npm ~/.bower
 
 
 
@@ -46,58 +42,61 @@ rm -rf $NVM_DIR ~/.npm ~/.bower
 # }
 # This will need to be executed as an Admin (maybe just use sudo).
 
-for bom in org.nodejs.node.pkg.bom org.nodejs.pkg.bom; do
-
-  receipt=/var/db/receipts/${bom}
-  [ -e ${receipt} ] && {
-    # Loop through all the files in the bom.
-    lsbom -f -l -s -pf ${receipt} \
-    | while read i; do
-      # Remove each file listed in the bom.
-      rm -v /usr/local/${i}
-    done
-  }
-
-done
+# for bom in org.nodejs.node.pkg.bom org.nodejs.pkg.bom; do
+#
+#   receipt=/var/db/receipts/${bom}
+#   [ -e ${receipt} ] && {
+#     # Loop through all the files in the bom.
+#     lsbom -f -l -s -pf ${receipt} \
+#     | while read i; do
+#       # Remove each file listed in the bom.
+#       rm -v /usr/local/${i}
+#     done
+#   }
+#
+# done
 
 ### another way to do it
-lsbom -f -l -s -pf /var/db/receipts/org.nodejs.pkg.bom | while read f; do  sudo rm /usr/local/${f}; done
-sudo rm -rf /usr/local/lib/node /usr/local/lib/node_modules /var/db/receipts/org.nodejs.*
+# lsbom -f -l -s -pf /var/db/receipts/org.nodejs.pkg.bom | while read f; do  sudo rm /usr/local/${f}; done
+#sudo rm -rf /usr/local/lib/node /usr/local/lib/node_modules /var/db/receipts/org.nodejs.*
 
 
 # Remove directories related to node.js.
-sudo rm -rf /usr/local/{lib/node{,/.npm,_modules},bin,share/man}/{npm*,node*,man1/node*}
-## these 2 lines are the same
-sudo rm -rf /usr/local/bin/npm /usr/local/share/man/man1/node* /usr/local/lib/dtrace/node.d ~/.npm ~/.node-gyp /opt/local/bin/node opt/local/include/node /opt/local/lib/node_modules
 
-sudo rm -rf  /usr/local/lib/node_modules/npm/
-rm -f /usr/local/bin/npm;
-rm -f /usr/local/lib/dtrace/node.d;
-rm -rf ~/.npm;
-sudo rm -rf /usr/local/bin/npm
+rm -rf $NVM_DIR ~/.npm ~/.bower
+rm -rf ~/.npm
+rm -rf ~/.nvm
+rm -rf ~/.bower
+rm -rf ~/.node-gyp
 
-sudo rm -rf /usr/local/share/man/man1/node.1
-
-sudo rm -rf /usr/local/lib/dtrace/node.d
-
-sudo rm -rf ~/.npm
-
-sudo rm -rf /usr/local/include/node*
-
-sudo rm -rf /usr/local/lib/node*
-
-rm -rf ~/node*
 rm -rf ~/npm
-rm -rf ~/.npm*
-sudo rm -rf /usr/local/lib/node*
-sudo rm -rf /usr/local/include/node*
-sudo rm -rf /usr/local/bin/node
-sudo rm -rf /usr/local/bin/npm
-sudo rm -rf /usr/local/share/man/man1/node.1
-sudo rm -rf /usr/local/lib/dtrace/node.d
 
-rm -vrf /usr/local/lib/node \
-  /usr/local/lib/node_modules \
-  /var/db/receipts/org.nodejs.*
+rm -rf /opt/local/bin/node
+rm -rf /opt/local/include/node
+rm -rf /opt/local/lib/node_modules
 
+rm -rf /usr/local/bin/npm
+rm -rf /usr/local/share/man/man1/node*
+rm -rf /usr/local/lib/dtrace/node.d
+
+rm -rf /usr/local/lib/node_modules/npm/
+rm -rf /usr/local/lib/dtrace/node.d;
+rm -rf /usr/local/share/man/man1/node.1
+rm -rf /usr/local/lib/dtrace/node.d
+
+rm -rf /usr/local/include/node*
+
+rm -rf /usr/local/lib/node*
+rm -rf /usr/local/lib/node*
+rm -rf /usr/local/include/node*
+rm -rf /usr/local/bin/node
+rm -rf /usr/local/bin/npm
+rm -rf /usr/local/share/man/man1/node.1
+rm -rf /usr/local/lib/dtrace/node.d
+
+rm -vrf /usr/local/lib/node
+rm -rf /usr/local/lib/node_modules \
+rm -rf /var/db/receipts/org.nodejs.*
+
+echo 'done!!!'
 exit 0
