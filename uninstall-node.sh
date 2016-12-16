@@ -74,6 +74,13 @@ rm -rf ~/.bower
 rm -rf ~/.node-gyp
 
 rm -rf ~/npm
+rm -rf ~/n/bin
+rm -rf ~/n/etc
+rm -rf ~/n/include
+rm -rf ~/n/lib
+rm -rf ~/n/n
+rm -rf ~/n/share
+
 
 rm -rf /opt/local/bin/node
 rm -rf /opt/local/include/node
