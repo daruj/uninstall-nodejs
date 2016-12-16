@@ -18,47 +18,49 @@ sudo port uninstall nodejs
 
 # this can not be done with sudo
 # Uninstall with brew everything node related (needs to be before sudo password)
-brew uninstall node
-brew uninstall npm
-brew uninstall nvm
-brew uninstall n
-brew uninstall yarn
-brew prune
+# brew uninstall node
+# brew uninstall npm
+# brew uninstall nvm
+# brew uninstall n
+# brew uninstall yarn
+# brew prune
+
+
+# brew cleanup
 
 # after all brew uninstalls
-brew cleanup
 
 ## remove nvm
 
 
 
 
-# (( ${#} > 0 )) || {
-#   echo 'DISCLAIMER: USE THIS SCRIPT AT YOUR OWN RISK!'
-#   echo 'THE AUTHOR TAKES NO RESPONSIBILITY FOR THE RESULTS OF THIS SCRIPT.'
-#   echo "Disclaimer aside, this worked for the author, for what that's worth."
-#   echo 'Press Control-C to quit now.'
-#   read
-#   echo 'Re-running the script with sudo.'
-#   echo 'You may be prompted for a password.'
-#   sudo ${0} sudo
-#   exit $?
-# }
-# This will need to be executed as an Admin (maybe just use sudo).
+(( ${#} > 0 )) || {
+  echo 'DISCLAIMER: USE THIS SCRIPT AT YOUR OWN RISK!'
+  echo 'THE AUTHOR TAKES NO RESPONSIBILITY FOR THE RESULTS OF THIS SCRIPT.'
+  echo "Disclaimer aside, this worked for the author, for what that's worth."
+  echo 'Press Control-C to quit now.'
+  read
+  echo 'Re-running the script with sudo.'
+  echo 'You may be prompted for a password.'
+  sudo ${0} sudo
+  exit $?
+}
+This will need to be executed as an Admin (maybe just use sudo).
 
-# for bom in org.nodejs.node.pkg.bom org.nodejs.pkg.bom; do
-#
-#   receipt=/var/db/receipts/${bom}
-#   [ -e ${receipt} ] && {
-#     # Loop through all the files in the bom.
-#     lsbom -f -l -s -pf ${receipt} \
-#     | while read i; do
-#       # Remove each file listed in the bom.
-#       rm -v /usr/local/${i}
-#     done
-#   }
-#
-# done
+for bom in org.nodejs.node.pkg.bom org.nodejs.pkg.bom; do
+
+  receipt=/var/db/receipts/${bom}
+  [ -e ${receipt} ] && {
+    # Loop through all the files in the bom.
+    lsbom -f -l -s -pf ${receipt} \
+    | while read i; do
+      # Remove each file listed in the bom.
+      rm -v /usr/local/${i}
+    done
+  }
+
+done
 
 ### another way to do it
 # lsbom -f -l -s -pf /var/db/receipts/org.nodejs.pkg.bom | while read f; do  sudo rm /usr/local/${f}; done
@@ -74,6 +76,13 @@ rm -rf ~/.bower
 rm -rf ~/.node-gyp
 
 rm -rf ~/npm
+rm -rf/n/bin
+rm -rf/n/etc
+rm -rf/n/include
+rm -rf/n/lib
+rm -rf/n/n
+rm -rf/n/share
+
 
 rm -rf /opt/local/bin/node
 rm -rf /opt/local/include/node
@@ -81,7 +90,7 @@ rm -rf /opt/local/lib/node_modules
 
 rm -rf /usr/local/bin/npm
 rm -rf /usr/local/bin/node
-
+rm -rf /usr/local/bin/n
 rm -rf /usr/local/share/man/man1/node*
 rm -rf /usr/local/share/man/man1/npm*
 
